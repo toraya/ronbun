@@ -14,6 +14,16 @@
 		240035821BD9D19900694B0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240035811BD9D19900694B0C /* Images.xcassets */; };
 		240035851BD9D19900694B0C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240035831BD9D19900694B0C /* LaunchScreen.xib */; };
 		240035911BD9D19900694B0C /* ResponseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 240035901BD9D19900694B0C /* ResponseTests.m */; };
+		2400359D1BD9D31C00694B0C /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2400359B1BD9D31C00694B0C /* SelectViewController.m */; };
+		2400359E1BD9D31C00694B0C /* SelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2400359C1BD9D31C00694B0C /* SelectViewController.xib */; };
+		240035A71BD9D66B00694B0C /* ClothesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240035A51BD9D66B00694B0C /* ClothesTableViewController.m */; };
+		240035A81BD9D66B00694B0C /* ClothesTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240035A61BD9D66B00694B0C /* ClothesTableViewController.xib */; };
+		240035AC1BD9EEBF00694B0C /* ClothesImgTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 240035AA1BD9EEBF00694B0C /* ClothesImgTableViewController.m */; };
+		240035AD1BD9EEBF00694B0C /* ClothesImgTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240035AB1BD9EEBF00694B0C /* ClothesImgTableViewController.xib */; };
+		240035B51BD9EFF000694B0C /* ClothesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 240035B31BD9EFF000694B0C /* ClothesTableViewCell.m */; };
+		240035B61BD9EFF000694B0C /* ClothesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240035B41BD9EFF000694B0C /* ClothesTableViewCell.xib */; };
+		240035BA1BD9F02000694B0C /* ClothesImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 240035B81BD9F02000694B0C /* ClothesImgTableViewCell.m */; };
+		240035BB1BD9F02000694B0C /* ClothesImgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240035B91BD9F02000694B0C /* ClothesImgTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +50,21 @@
 		2400358A1BD9D19900694B0C /* ResponseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ResponseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2400358F1BD9D19900694B0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		240035901BD9D19900694B0C /* ResponseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResponseTests.m; sourceTree = "<group>"; };
+		2400359A1BD9D31C00694B0C /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
+		2400359B1BD9D31C00694B0C /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
+		2400359C1BD9D31C00694B0C /* SelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectViewController.xib; sourceTree = "<group>"; };
+		240035A41BD9D66B00694B0C /* ClothesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothesTableViewController.h; sourceTree = "<group>"; };
+		240035A51BD9D66B00694B0C /* ClothesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothesTableViewController.m; sourceTree = "<group>"; };
+		240035A61BD9D66B00694B0C /* ClothesTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClothesTableViewController.xib; sourceTree = "<group>"; };
+		240035A91BD9EEBF00694B0C /* ClothesImgTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothesImgTableViewController.h; sourceTree = "<group>"; };
+		240035AA1BD9EEBF00694B0C /* ClothesImgTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothesImgTableViewController.m; sourceTree = "<group>"; };
+		240035AB1BD9EEBF00694B0C /* ClothesImgTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClothesImgTableViewController.xib; sourceTree = "<group>"; };
+		240035B21BD9EFF000694B0C /* ClothesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothesTableViewCell.h; sourceTree = "<group>"; };
+		240035B31BD9EFF000694B0C /* ClothesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothesTableViewCell.m; sourceTree = "<group>"; };
+		240035B41BD9EFF000694B0C /* ClothesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClothesTableViewCell.xib; sourceTree = "<group>"; };
+		240035B71BD9F02000694B0C /* ClothesImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothesImgTableViewCell.h; sourceTree = "<group>"; };
+		240035B81BD9F02000694B0C /* ClothesImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothesImgTableViewCell.m; sourceTree = "<group>"; };
+		240035B91BD9F02000694B0C /* ClothesImgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClothesImgTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +108,7 @@
 			children = (
 				240035781BD9D19900694B0C /* AppDelegate.h */,
 				240035791BD9D19900694B0C /* AppDelegate.m */,
-				2400357B1BD9D19900694B0C /* ViewController.h */,
-				2400357C1BD9D19900694B0C /* ViewController.m */,
+				240035AE1BD9EEE800694B0C /* ViewController */,
 				2400357E1BD9D19900694B0C /* Main.storyboard */,
 				240035811BD9D19900694B0C /* Images.xcassets */,
 				240035831BD9D19900694B0C /* LaunchScreen.xib */,
@@ -117,6 +141,54 @@
 				2400358F1BD9D19900694B0C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		240035AE1BD9EEE800694B0C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2400357B1BD9D19900694B0C /* ViewController.h */,
+				2400357C1BD9D19900694B0C /* ViewController.m */,
+				240035AF1BD9EF1000694B0C /* imageAdd */,
+				240035B01BD9EF4200694B0C /* Clothes */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		240035AF1BD9EF1000694B0C /* imageAdd */ = {
+			isa = PBXGroup;
+			children = (
+				2400359A1BD9D31C00694B0C /* SelectViewController.h */,
+				2400359B1BD9D31C00694B0C /* SelectViewController.m */,
+				2400359C1BD9D31C00694B0C /* SelectViewController.xib */,
+			);
+			name = imageAdd;
+			sourceTree = "<group>";
+		};
+		240035B01BD9EF4200694B0C /* Clothes */ = {
+			isa = PBXGroup;
+			children = (
+				240035A41BD9D66B00694B0C /* ClothesTableViewController.h */,
+				240035A51BD9D66B00694B0C /* ClothesTableViewController.m */,
+				240035A61BD9D66B00694B0C /* ClothesTableViewController.xib */,
+				240035A91BD9EEBF00694B0C /* ClothesImgTableViewController.h */,
+				240035AA1BD9EEBF00694B0C /* ClothesImgTableViewController.m */,
+				240035AB1BD9EEBF00694B0C /* ClothesImgTableViewController.xib */,
+				240035B11BD9EFA900694B0C /* ViewControllerCell */,
+			);
+			name = Clothes;
+			sourceTree = "<group>";
+		};
+		240035B11BD9EFA900694B0C /* ViewControllerCell */ = {
+			isa = PBXGroup;
+			children = (
+				240035B21BD9EFF000694B0C /* ClothesTableViewCell.h */,
+				240035B31BD9EFF000694B0C /* ClothesTableViewCell.m */,
+				240035B41BD9EFF000694B0C /* ClothesTableViewCell.xib */,
+				240035B71BD9F02000694B0C /* ClothesImgTableViewCell.h */,
+				240035B81BD9F02000694B0C /* ClothesImgTableViewCell.m */,
+				240035B91BD9F02000694B0C /* ClothesImgTableViewCell.xib */,
+			);
+			name = ViewControllerCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +240,7 @@
 				TargetAttributes = {
 					240035701BD9D19900694B0C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = Y8T698BPF9;
 					};
 					240035891BD9D19900694B0C = {
 						CreatedOnToolsVersion = 6.4;
@@ -199,8 +272,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2400359E1BD9D31C00694B0C /* SelectViewController.xib in Resources */,
 				240035801BD9D19900694B0C /* Main.storyboard in Resources */,
+				240035AD1BD9EEBF00694B0C /* ClothesImgTableViewController.xib in Resources */,
 				240035851BD9D19900694B0C /* LaunchScreen.xib in Resources */,
+				240035A81BD9D66B00694B0C /* ClothesTableViewController.xib in Resources */,
+				240035B61BD9EFF000694B0C /* ClothesTableViewCell.xib in Resources */,
+				240035BB1BD9F02000694B0C /* ClothesImgTableViewCell.xib in Resources */,
 				240035821BD9D19900694B0C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,9 +297,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				240035A71BD9D66B00694B0C /* ClothesTableViewController.m in Sources */,
+				2400359D1BD9D31C00694B0C /* SelectViewController.m in Sources */,
 				2400357D1BD9D19900694B0C /* ViewController.m in Sources */,
+				240035BA1BD9F02000694B0C /* ClothesImgTableViewCell.m in Sources */,
+				240035AC1BD9EEBF00694B0C /* ClothesImgTableViewController.m in Sources */,
 				2400357A1BD9D19900694B0C /* AppDelegate.m in Sources */,
 				240035771BD9D19900694B0C /* main.m in Sources */,
+				240035B51BD9EFF000694B0C /* ClothesTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +432,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Response/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -359,7 +444,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Response/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -418,6 +505,7 @@
 				240035961BD9D19900694B0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		240035971BD9D19900694B0C /* Build configuration list for PBXNativeTarget "ResponseTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +514,7 @@
 				240035991BD9D19900694B0C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

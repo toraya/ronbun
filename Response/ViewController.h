@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SelectViewController.h"
+#import "ClothesTableViewController.h"
 
 @interface ViewController : UIViewController
 
+@property (nonatomic, strong) IBOutlet UIButton *categoryBtn;
+@property (nonatomic, strong) IBOutlet UIButton *clothesListBtn;
 
 @end
 
