@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClothesTableViewCell.h"
 
 @interface ClothesTableViewController : UITableViewController
+
+@property (strong, nonatomic) NSString *url;
 
 @end

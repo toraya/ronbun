@@ -7,6 +7,7 @@
 //
 
 #import "SelectViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface SelectViewController ()
 
@@ -31,8 +32,6 @@
     [self.outerSelectBtn addTarget:self
                             action:@selector(tapOuterBtn:)
                   forControlEvents:UIControlEventTouchUpInside];
-    
-    
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -42,7 +41,9 @@
 }
 -(void)tapTopsBtn:(UIButton *)button{
     
-    self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
+    //self.url = [NSURL URLWithString:@"http://192.168.1.3:4000/classify"];
+    self.url = @"http://192.168.1.3:4000/classify";
+
     
     UIImagePickerController *imgPic = [[UIImagePickerController alloc]init];
     imgPic.delegate = self;
@@ -53,37 +54,55 @@
 
 -(void)tapUnderBtn:(UIButton *)button{
     
-    self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
+    //self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
+    self.url = @"http://192.168.1.3:5000/classify";
+
     
     UIImagePickerController *imgPic = [[UIImagePickerController alloc]init];
     imgPic.delegate = self;
     [imgPic setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController: imgPic animated:YES completion:nil];
-
 }
+//
+//-(void)tapOuterBtn:(UIButton *)button{
+//    self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
+//    UIImagePickerController *imgPic = [[UIImagePickerController alloc]init];
+//    imgPic.delegate = self;
+//    [imgPic setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+//    [self presentViewController: imgPic animated:YES completion:nil];
+//    
+//}
 
 -(void)tapOuterBtn:(UIButton *)button{
-    
-    self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
+    //self.url = [NSURL URLWithString:@"http://192.168.1.3:3000/classify"];
+      self.url = @"http://192.168.1.3:3000/classify";
     
     UIImagePickerController *imgPic = [[UIImagePickerController alloc]init];
     imgPic.delegate = self;
     [imgPic setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController: imgPic animated:YES completion:nil];
-    
+
 }
+
+
 
 - (void)imagePickerController :(UIImagePickerController *)picker
         didFinishPickingImage :(UIImage *)image editingInfo :(NSDictionary *)editingInfo {
+    
+    //画像が選択されたとき。オリジナル画像をUIImageViewに突っ込む
+    self.selectImage = image;
+    
     // 読み込んだ画像表示
     NSLog(@"selected");
     
     
-    UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+    
+    //UIImageView *iv = [[UIImageView alloc] initWithImage:image];
     //[self.view addSubview:iv];
     
     [self dismissViewControllerAnimated:YES completion:nil];
-    [self imageSelect];
+    //[self imageSelect];
+    [self uploadButtonTouched];
 }
 
 -(void)alertView{
@@ -110,9 +129,13 @@
     NSURLSession* session = [NSURLSession sessionWithConfiguration:config];
     
     // アップロードする画像
-    NSString* path = [[NSBundle mainBundle] pathForResource:self.selectImage ofType:@"png"];
-    NSData* imageData = [NSData dataWithContentsOfFile:path];
+    NSData* jpgData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(self.selectImage, 0.5f)];
+    NSString* jpg64Str = [jpgData base64EncodedStringWithOptions:NSDataBase64Encoding76CharacterLineLength];
     
+//    NSString* path = [[NSBundle mainBundle] pathForResource:self.selectImage ofType:@"png"];
+//    NSData* imageData = [NSData dataWithContentsOfFile:path];
+     NSData* imageData = [NSData dataWithContentsOfFile:jpg64Str];
+    NSLog(@"%@",imageData);
     // postデータの作成
     NSMutableData* data = [NSMutableData data];
     
@@ -120,9 +143,9 @@
     [data appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [data appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data;"] dataUsingEncoding:NSUTF8StringEncoding]];
     [data appendData:[[NSString stringWithFormat:@"name=\"%@\";", @"image"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [data appendData:[[NSString stringWithFormat:@"filename=\"%@\"\r\n", @"vlcsnap-2015-05-31-00h33m14s99.png"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [data appendData:[[NSString stringWithFormat:@"Content-Type: image/png\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [data appendData:imageData];
+    [data appendData:[[NSString stringWithFormat:@"filename=\"%@\"\r\n", @"vlcsnap-2015-05-31-00h33m14s99.jpg"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [data appendData:[[NSString stringWithFormat:@"Content-Type: image/jpeg\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [data appendData:jpgData];
     [data appendData:[[NSString stringWithFormat:@"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     
     // 最後にバウンダリを付ける
@@ -137,7 +160,7 @@
                                                 NSLog(@"%@",array);
                                                 NSLog(@"%@,%@", [array valueForKeyPath:@"label"], [array valueForKeyPath:@"label_name"]);
                                                 if([array valueForKeyPath:@"label"] == nil) {
-                                                    [self alertView];
+                                                    //[self alertView];
                                                 }
                                             }];
     [task resume];
@@ -145,9 +168,44 @@
 
 }
 
+-(void)uploadButtonTouched
+{
+    NSData *imageData = [[NSData alloc] initWithData:UIImageJPEGRepresentation(self.selectImage, 0.1)];
+   // NSLog(@"%@", imageData);
+    
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:[NSURL URLWithString:self.url]];
+    NSDictionary *parameters = nil;
+    
+    manager.requestSerializer= [AFHTTPRequestSerializer serializer];
+    
+    AFHTTPRequestOperation *op = [manager POST:self.url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        //do not put image inside parameters dictionary as I did, but append it!
+        [formData appendPartWithFileData:imageData name:@"image" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Success: %@", responseObject);
+        NSLog(@"%@,%@", [responseObject valueForKeyPath:@"label"],[responseObject valueForKeyPath:@"label_name"]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@ ***** %@", operation.responseString, error);
+    }];
+    
+    
+    [op start];
+    
+
+}
+
+
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle:@"失敗"
+                          message:@"カテゴリー分けに失敗しました。"
+                          delegate:self
+                          cancelButtonTitle:nil
+                          otherButtonTitles:@"Ok", nil];
     
+    // アラートビューを表示
+    [alert show];
 }
 
 

@@ -18,7 +18,7 @@ UIImagePickerControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *outerSelectBtn;
 @property (weak, nonatomic) IBOutlet UIButton *backBtn;
 
-@property (strong, nonatomic) NSURL *url;
+@property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) UIImage *selectImage;
 
 @end
