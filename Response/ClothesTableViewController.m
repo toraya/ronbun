@@ -26,7 +26,7 @@
     self.tableView.dataSource = self;
     
     // テーブルに表示したいデータソースをセット
-    self.dataSource = [NSArray arrayWithObjects:@"sleeveless",@"shortSleev",@"longSleeves",@"7PartsSleeve",
+    self.dataSource = [NSArray arrayWithObjects:@"sleeveless",@"shortSleeve",@"longSleeves",@"7PartsSleeve",
                        @"skirt",@"longSkirt",@"miniSkirt",@"pants",@"shorts",
                        @"outer",@"longOuter",@"shortOuter",@"onepiece",@"overalls",nil];
     

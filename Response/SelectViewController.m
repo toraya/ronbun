@@ -184,6 +184,7 @@
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", responseObject);
         NSLog(@"%@,%@", [responseObject valueForKeyPath:@"label"],[responseObject valueForKeyPath:@"label_name"]);
+        [self alertView];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@ ***** %@", operation.responseString, error);
     }];
@@ -195,19 +196,19 @@
 }
 
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle:@"失敗"
-                          message:@"カテゴリー分けに失敗しました。"
-                          delegate:self
-                          cancelButtonTitle:nil
-                          otherButtonTitles:@"Ok", nil];
-    
-    // アラートビューを表示
-    [alert show];
-}
-
+//-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+//{
+//    UIAlertView *alert = [[UIAlertView alloc]
+//                          initWithTitle:@"失敗"
+//                          message:@"カテゴリー分けに失敗しました。"
+//                          delegate:self
+//                          cancelButtonTitle:nil
+//                          otherButtonTitles:@"Ok", nil];
+//    
+//    // アラートビューを表示
+//    [alert show];
+//}
+//
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
