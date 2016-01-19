@@ -148,8 +148,6 @@
         
     }
     
-    NSLog(@"%@", self.url);
-    
     [self getImageUrl];
 
 }
