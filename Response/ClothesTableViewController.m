@@ -148,7 +148,7 @@
         
     }
     
-    NSLog(@"%@", self.url);
+    NSLog(@"%@", self.url);
     
     [self getImageUrl];
 
@@ -158,7 +158,9 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    [manager GET:self.url parameters:nil
+    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    [manager GET:urlU parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
              NSLog(@"%@", responseObject);
          }
