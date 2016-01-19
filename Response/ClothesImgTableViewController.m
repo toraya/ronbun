@@ -7,6 +7,7 @@
 //
 
 #import "ClothesImgTableViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ClothesImgTableViewController ()
 
@@ -17,12 +18,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    self.url = [userData stringForKey:@"SELECT_CLOTHESTYPE"];
+    [self getImageURL];
 }
+
+-(void)getImageURL
+{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //NSLog(@"%@",self.url);
+    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *str = [urlU stringByReplacingOccurrencesOfString:@"%13" withString:@""];
+    //NSLog(@"%@",str);
+    
+    [manager GET:str parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"%@", responseObject);
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error){
+             NSLog(@"%@", error);
+         }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

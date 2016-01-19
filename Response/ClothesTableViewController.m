@@ -26,9 +26,9 @@
     self.tableView.dataSource = self;
     
     // テーブルに表示したいデータソースをセット
-    self.dataSource = [NSArray arrayWithObjects:@"sleeveless",@"shortSleeve",@"longSleeves",@"7PartsSleeve",
+    self.dataSource = [NSArray arrayWithObjects:@"sleeveless",@"shortSleeve",@"longSleeves",@"7PartsSleeve",
                        @"skirt",@"longSkirt",@"miniSkirt",@"pants",@"shorts",
-                       @"outer",@"longOuter",@"shortOuter",@"onepiece",@"overalls",nil];
+                       @"outer",@"longOuter",@"shortOuter",@"onepiece",@"overalls",nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -132,7 +132,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here, for example:
     // Create the next view controller.
-    NSLog(@"%@", self.dataSource[indexPath.row]);
+    //NSLog(@"%@", self.dataSource[indexPath.row]);
     NSString *clothesType = (NSString*)self.dataSource[indexPath.row];
     NSLog(@"%@:%ld", clothesType, (long)indexPath.row);
     
@@ -148,23 +148,37 @@
         
     }
     
-    [self getImageUrl];
+    [self clothesTypeSave];
+//    [self getImageUrl];
 
 }
 
--(void)getImageUrl
+//-(void)getImageUrl
+//{
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    //NSLog(@"%@",self.url);
+//    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString *str = [urlU stringByReplacingOccurrencesOfString:@"%13" withString:@""];
+//    //NSLog(@"%@",str);
+//    
+//    [manager GET:str parameters:nil
+//         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//             NSLog(@"%@", responseObject);
+//         }
+//         failure:^(AFHTTPRequestOperation *operation, NSError *error){
+//             NSLog(@"%@", error);
+//         }];
+//}
+
+-(void)clothesTypeSave
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    //URLをユーザーデータに保持
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    [userData setObject:self.url forKey:@"SELECT_CLOTHESTYPE"];
     
-    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    [manager GET:urlU parameters:nil
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"%@", responseObject);
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error){
-             NSLog(@"%@", error);
-         }];
+    //画像一覧表示画面に移動
+    ClothesImgTableViewController *civ = [[ClothesImgTableViewController alloc]init];
+    [self presentViewController:civ animated:YES completion:nil];
 }
 
 /*

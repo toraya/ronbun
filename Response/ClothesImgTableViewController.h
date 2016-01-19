@@ -10,4 +10,6 @@
 
 @interface ClothesImgTableViewController : UITableViewController
 
+@property (nonatomic, strong) NSString *url;
+
 @end
