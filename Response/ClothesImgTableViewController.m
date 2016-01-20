@@ -9,8 +9,7 @@
 #import "ClothesImgTableViewController.h"
 #import <AFNetworking/AFNetworking.h>
 
-@interface ClothesImgTableViewController ()
-
+@interface ClothesImgTableViewController ()<UITableViewDelegate, UITableViewDataSource>
 @end
 
 @implementation ClothesImgTableViewController
@@ -18,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
+
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
     self.url = [userData stringForKey:@"SELECT_CLOTHESTYPE"];
     [self getImageURL];
@@ -25,16 +28,21 @@
 
 -(void)getImageURL
 {
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+
     //NSLog(@"%@",self.url);
     NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *str = [urlU stringByReplacingOccurrencesOfString:@"%13" withString:@""];
     //NSLog(@"%@",str);
     
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    
     [manager GET:str parameters:nil
          success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"%@", responseObject);
+             NSLog(@"%@", operation.responseString);
+             self.imagedata = operation.responseString;
+             self.imageUrlArray =[NSArray arrayWithContentsOfFile:self.imagedata];
          }
          failure:^(AFHTTPRequestOperation *operation, NSError *error){
              NSLog(@"%@", error);
@@ -50,26 +58,43 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    NSInteger dataCount = 0;
+    // テーブルに表示するデータ件数を返す
+    switch (section) {
+        case 0:
+            dataCount = self.imageUrlArray.count;
+            break;
+    }
+    return dataCount;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    // 再利用できるセルがあれば再利用する
+    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (!cell) {
+        // 再利用できない場合は新規で作成
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                      reuseIdentifier:CellIdentifier];
+    }
     
+    switch (indexPath.section) {
+        case 0:
+            cell.textLabel.text = self.imageUrlArray[indexPath.row];
+            NSLog(@"%@",self.imageUrlArray[indexPath.row]);
+            break;
+    }
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

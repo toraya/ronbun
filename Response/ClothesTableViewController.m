@@ -57,7 +57,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    
-    NSInteger dataCount;
+    NSInteger dataCount = 0;
     
     // テーブルに表示するデータ件数を返す
     switch (section) {

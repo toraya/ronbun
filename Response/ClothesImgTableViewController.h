@@ -11,5 +11,7 @@
 @interface ClothesImgTableViewController : UITableViewController
 
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *imagedata;
+@property (nonatomic, strong) NSArray *imageUrlArray;
 
 @end
