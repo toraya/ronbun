@@ -148,36 +148,43 @@
         
     }
     
-    [self clothesTypeSave];
-//    [self getImageUrl];
+    [self getImageUrl];
 
 }
 
-//-(void)getImageUrl
-//{
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    //NSLog(@"%@",self.url);
-//    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSString *str = [urlU stringByReplacingOccurrencesOfString:@"%13" withString:@""];
-//    //NSLog(@"%@",str);
-//    
-//    [manager GET:str parameters:nil
-//         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//             NSLog(@"%@", responseObject);
-//         }
-//         failure:^(AFHTTPRequestOperation *operation, NSError *error){
-//             NSLog(@"%@", error);
-//         }];
-//}
+-(void)getImageUrl
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *str = [urlU stringByReplacingOccurrencesOfString:@"%13" withString:@""];
+    
+    [manager GET:str parameters:nil
+         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             NSLog(@"%@", responseObject);
+             NSString *imagedata = operation.responseString;
+             self.imageUrl =[imagedata componentsSeparatedByString:@","];
+             NSLog(@"%@",self.imageUrl);
+             [self clothesTypeSave];
+             
+         }
+         failure:^(AFHTTPRequestOperation *operation, NSError *error){
+             NSLog(@"%@", error);
+         }];
+}
 
 -(void)clothesTypeSave
 {
     //URLをユーザーデータに保持
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-    [userData setObject:self.url forKey:@"SELECT_CLOTHESTYPE"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.imageUrl];
+    [userData setObject:data forKey:@"IMAGE_URL"];
+    [userData setObject:self.url forKey:@"URL"];
     
     //画像一覧表示画面に移動
-    ClothesImgTableViewController *civ = [[ClothesImgTableViewController alloc]init];
+//    ClothesImgTableViewController *civ = [[ClothesImgTableViewController alloc]init];
+    TableViewController *civ = [[TableViewController alloc] init];
     [self presentViewController:civ animated:YES completion:nil];
 }
 

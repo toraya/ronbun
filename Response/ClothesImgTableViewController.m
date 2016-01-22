@@ -10,44 +10,46 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface ClothesImgTableViewController ()<UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableViewcontroller;
 @end
 
 @implementation ClothesImgTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   // self.tableViewcontroller.delegate = self;
+   // self.tableViewcontroller.dataSource = self;
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
-
+//     [self.tableViewcontroller registerNib:[UINib nibWithNibName:@"ClothesImgTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+    
+    
     NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
-    self.url = [userData stringForKey:@"SELECT_CLOTHESTYPE"];
-    [self getImageURL];
+    NSData *data = [userData objectForKey:@"IMAGE_URL"];
+    self.imageUrlArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"%@",self.imageUrlArray);
+    
+    //[self getImageURL];
 }
 
--(void)getImageURL
-{
-
-    //NSLog(@"%@",self.url);
-    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSString *str = [urlU stringByReplacingOccurrencesOfString:@"%13" withString:@""];
-    //NSLog(@"%@",str);
-    
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
-    [manager GET:str parameters:nil
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             NSLog(@"%@", operation.responseString);
-             self.imagedata = operation.responseString;
-             self.imageUrlArray =[NSArray arrayWithContentsOfFile:self.imagedata];
-         }
-         failure:^(AFHTTPRequestOperation *operation, NSError *error){
-             NSLog(@"%@", error);
-         }];
-}
+//-(void)getImageURL
+//{
+//
+//    NSString *urlU = [self.url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    NSString *str = [urlU stringByReplacingOccurrencesOfString:@"%13" withString:@""];
+//
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+//    
+//    [manager GET:str parameters:nil
+//         success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//             self.imagedata = operation.responseString;
+//             self.imageUrlArray =[self.imagedata componentsSeparatedByString:@","];             NSLog(@"%@",self.imageUrlArray);
+//         }
+//         failure:^(AFHTTPRequestOperation *operation, NSError *error){
+//             NSLog(@"%@", error);
+//         }];
+//}
 
 
 - (void)didReceiveMemoryWarning {
@@ -62,7 +64,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+    //Return the number of rows in the section.
     NSInteger dataCount = 0;
     // テーブルに表示するデータ件数を返す
     switch (section) {
@@ -70,28 +72,58 @@
             dataCount = self.imageUrlArray.count;
             break;
     }
+    NSLog(@"%ld",dataCount);
     return dataCount;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    static NSString *CellIdentifier = @"Cell";
-    // 再利用できるセルがあれば再利用する
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+//    static NSString *CellIdentifier = @"Cell";
+//    // 再利用できるセルがあれば再利用する
+//    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    if (!cell) {
+//        // 再利用できない場合は新規で作成
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+//                                      reuseIdentifier:CellIdentifier];
+//    }
+//    
+//    switch (indexPath.section) {
+//        case 0:
+//            cell.textLabel.text = self.imageUrlArray[indexPath.row];
+//            NSLog(@"%@",self.imageUrlArray[indexPath.row]);
+//            break;
+//    }
+//    return cell;
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (!cell) {
-        // 再利用できない場合は新規で作成
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:CellIdentifier];
-    }
+    ClothesImgTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    switch (indexPath.section) {
-        case 0:
-            cell.textLabel.text = self.imageUrlArray[indexPath.row];
-            NSLog(@"%@",self.imageUrlArray[indexPath.row]);
-            break;
-    }
+    // Configure the cell...
+//    if(cell == nil){
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+    
+    //NSDictionary *status = [self.imageUrlArray objectAtIndex:indexPath.row];
+    NSString *text = [self.imageUrlArray objectAtIndex:indexPath.row];
+    NSLog(@"%@",[self.imageUrlArray objectAtIndex:indexPath.row]);
+    //cell.textLabel.text = text;
+    
+    dispatch_queue_t q_global = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t q_main = dispatch_get_main_queue();
+    cell.cloatheimage.image = nil;
+    dispatch_async(q_global, ^{
+        NSString *imageURL = text;
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL: [NSURL URLWithString: imageURL]]];
+        
+        dispatch_async(q_main, ^{
+            cell.cloatheimage.image = image;
+            [cell layoutSubviews];
+        });
+    });
+
+    
     return cell;
 }
 

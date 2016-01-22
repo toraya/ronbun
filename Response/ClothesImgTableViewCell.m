@@ -20,4 +20,9 @@
     // Configure the view for the selected state
 }
 
++ (CGFloat)rowHeight
+{
+    return 60.0f;
+}
+
 @end

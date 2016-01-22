@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ClothesImgTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *cloatheimage;
 
 @end

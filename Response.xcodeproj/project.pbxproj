@@ -24,6 +24,8 @@
 		240035B61BD9EFF000694B0C /* ClothesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240035B41BD9EFF000694B0C /* ClothesTableViewCell.xib */; };
 		240035BA1BD9F02000694B0C /* ClothesImgTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 240035B81BD9F02000694B0C /* ClothesImgTableViewCell.m */; };
 		240035BB1BD9F02000694B0C /* ClothesImgTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 240035B91BD9F02000694B0C /* ClothesImgTableViewCell.xib */; };
+		24BEC3651C5224C9007B8C7C /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BEC3631C5224C9007B8C7C /* TableViewController.m */; };
+		24BEC3661C5224C9007B8C7C /* TableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24BEC3641C5224C9007B8C7C /* TableViewController.xib */; };
 		F16A9C28717CE918435E55BE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2FBFC15F7DD276D89AD43A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +68,9 @@
 		240035B71BD9F02000694B0C /* ClothesImgTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothesImgTableViewCell.h; sourceTree = "<group>"; };
 		240035B81BD9F02000694B0C /* ClothesImgTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothesImgTableViewCell.m; sourceTree = "<group>"; };
 		240035B91BD9F02000694B0C /* ClothesImgTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClothesImgTableViewCell.xib; sourceTree = "<group>"; };
+		24BEC3621C5224C9007B8C7C /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		24BEC3631C5224C9007B8C7C /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		24BEC3641C5224C9007B8C7C /* TableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewController.xib; sourceTree = "<group>"; };
 		375CC3223E52DD93385F0201 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A6569B386CC56577AE8FD12F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CD2FBFC15F7DD276D89AD43A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +193,9 @@
 				240035A91BD9EEBF00694B0C /* ClothesImgTableViewController.h */,
 				240035AA1BD9EEBF00694B0C /* ClothesImgTableViewController.m */,
 				240035AB1BD9EEBF00694B0C /* ClothesImgTableViewController.xib */,
+				24BEC3621C5224C9007B8C7C /* TableViewController.h */,
+				24BEC3631C5224C9007B8C7C /* TableViewController.m */,
+				24BEC3641C5224C9007B8C7C /* TableViewController.xib */,
 				240035B11BD9EFA900694B0C /* ViewControllerCell */,
 			);
 			name = Clothes;
@@ -305,6 +313,7 @@
 				240035851BD9D19900694B0C /* LaunchScreen.xib in Resources */,
 				240035A81BD9D66B00694B0C /* ClothesTableViewController.xib in Resources */,
 				240035B61BD9EFF000694B0C /* ClothesTableViewCell.xib in Resources */,
+				24BEC3661C5224C9007B8C7C /* TableViewController.xib in Resources */,
 				240035BB1BD9F02000694B0C /* ClothesImgTableViewCell.xib in Resources */,
 				240035821BD9D19900694B0C /* Images.xcassets in Resources */,
 			);
@@ -376,6 +385,7 @@
 				2400359D1BD9D31C00694B0C /* SelectViewController.m in Sources */,
 				2400357D1BD9D19900694B0C /* ViewController.m in Sources */,
 				240035BA1BD9F02000694B0C /* ClothesImgTableViewCell.m in Sources */,
+				24BEC3651C5224C9007B8C7C /* TableViewController.m in Sources */,
 				240035AC1BD9EEBF00694B0C /* ClothesImgTableViewController.m in Sources */,
 				2400357A1BD9D19900694B0C /* AppDelegate.m in Sources */,
 				240035771BD9D19900694B0C /* main.m in Sources */,

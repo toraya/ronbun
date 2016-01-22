@@ -10,8 +10,10 @@
 #import "ClothesTableViewCell.h"
 #import "ClothesImgTableViewController.h"
 
+#import "TableViewController.h"
 @interface ClothesTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) NSArray *imageUrl;
 
 @end
