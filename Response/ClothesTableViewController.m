@@ -147,8 +147,8 @@
     }else{
         
     }
-    
-    [self getImageUrl];
+    [self clothesTypeSave];
+    //[self getImageUrl];
 
 }
 
@@ -184,7 +184,7 @@
     
     //画像一覧表示画面に移動
 //    ClothesImgTableViewController *civ = [[ClothesImgTableViewController alloc]init];
-    TableViewController *civ = [[TableViewController alloc] init];
+    ImageViewController *civ = [[ImageViewController alloc] init];
     [self presentViewController:civ animated:YES completion:nil];
 }
 

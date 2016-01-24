@@ -11,6 +11,8 @@
 #import "ClothesImgTableViewController.h"
 
 #import "TableViewController.h"
+#import "ImageViewController.h"
+
 @interface ClothesTableViewController : UITableViewController
 
 @property (strong, nonatomic) NSString *url;
