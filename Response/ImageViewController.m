@@ -39,6 +39,12 @@ NSInteger _buttonSize = 80;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSUserDefaults *userData = [NSUserDefaults standardUserDefaults];
+    NSData *data = [userData objectForKey:@"IMAGE_URL"];
+    self.imageUrlArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"%@",self.imageUrlArray);
+    
     //サムネイルのファイル名を配列に代入
     [self setThumbnailImageResources];
     //サムネイルリストを生成
@@ -55,7 +61,7 @@ NSInteger _buttonSize = 80;
     _thumbnails = [NSMutableArray array];
     for (int i = 1; i <= _thumbnailNum; i++) {
         //拡張子より前のファイル名を保持
-        [_thumbnails addObject:[NSString stringWithFormat:@"%@%@",  _thumbnailFilePreffix,[NSString stringWithFormat:@"%d", i]]];
+        [_thumbnails addObject:self.imageUrlArray[i]];
     }
 }
 
@@ -72,7 +78,7 @@ NSInteger _buttonSize = 80;
             _thumbnailRowCount++;
         }
         //サムネイル表示
-        NSString *imageFile = [NSString stringWithFormat:@"%@%@", thumbnailName, _thumbnailFileSuffix];
+        NSString *imageFile = [self.imageUrlArray componentsJoinedByString:@","];
         //画像リソースの取得
         UIImage *image = [self getUIImageFromResources:imageFile ext:@"jpg"];
         UIImageView *thumbnailView = [[UIImageView alloc] initWithImage:image];

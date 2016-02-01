@@ -10,4 +10,8 @@
 
 @interface ImageViewController : UIViewController
 
+@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *imagedata;
+@property (nonatomic, strong) NSMutableArray *imageUrlArray;
+
 @end

@@ -54,29 +54,16 @@
 
 -(void)tapUnderBtn:(UIButton *)button{
     
-    //self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
+    //self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
     self.url = @"http://192.168.1.3:5000/classify";
-
-    
     UIImagePickerController *imgPic = [[UIImagePickerController alloc]init];
     imgPic.delegate = self;
     [imgPic setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController: imgPic animated:YES completion:nil];
 }
-//
-//-(void)tapOuterBtn:(UIButton *)button{
-//    self.url = [NSURL URLWithString:@"http://192.168.1.3:5000/classify"];
-//    UIImagePickerController *imgPic = [[UIImagePickerController alloc]init];
-//    imgPic.delegate = self;
-//    [imgPic setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-//    [self presentViewController: imgPic animated:YES completion:nil];
-//    
-//}
 
 -(void)tapOuterBtn:(UIButton *)button{
-    //self.url = [NSURL URLWithString:@"http://192.168.1.3:3000/classify"];
-      self.url = @"http://192.168.1.3:3000/classify";
-    
+    self.url = @"http://192.168.1.3:3000/classify";
     UIImagePickerController *imgPic = [[UIImagePickerController alloc]init];
     imgPic.delegate = self;
     [imgPic setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -200,7 +187,7 @@
 {
     UIAlertView *alert = [[UIAlertView alloc]
                           initWithTitle:@"失敗"
-                          message:@"カテゴリー分けに失敗しました。"
+                          message:@"カテゴリー分けに失敗しました。"
                           delegate:self
                           cancelButtonTitle:nil
                           otherButtonTitles:@"Ok", nil];

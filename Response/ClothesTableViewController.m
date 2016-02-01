@@ -26,9 +26,9 @@
     self.tableView.dataSource = self;
     
     // テーブルに表示したいデータソースをセット
-    self.dataSource = [NSArray arrayWithObjects:@"sleeveless",@"shortSleeve",@"longSleeves",@"7PartsSleeve",
+    self.dataSource = [NSArray arrayWithObjects:@"sleeveless",@"shortSleeve",@"longSleeves",@"7PartsSleeve",
                        @"skirt",@"longSkirt",@"miniSkirt",@"pants",@"shorts",
-                       @"outer",@"longOuter",@"shortOuter",@"onepiece",@"overalls",nil];
+                       @"outer",@"longOuter",@"shortOuter",@"onepiece",@"overalls",nil];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -41,10 +41,9 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-//- (void)didReceiveMemoryWarning {
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
 
 #pragma mark - Table view data source
 
@@ -137,19 +136,17 @@
     NSLog(@"%@:%ld", clothesType, (long)indexPath.row);
     
     if (indexPath.row == 0 || indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3){
-        self.url = [NSString stringWithFormat:@"http://192.168.1.3:4000/image/tops/%@",clothesType];
+        self.url = [NSString stringWithFormat:@"http://192.168.1.3:4000/image/tops/%@",clothesType];
     }else if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6 || indexPath.row == 7 || indexPath.row == 8)
     {
         self.url = [NSString stringWithFormat:@"http://192.168.1.3:5000/image/under/%@",clothesType];
     }else if (indexPath.row == 9 || indexPath.row == 10 || indexPath.row == 11 || indexPath.row == 12 || indexPath.row == 13)
     {
-        self.url = [NSString stringWithFormat:@"http://192.168.1.3:3000/image/outer/%@",clothesType];
+        self.url = [NSString stringWithFormat:@"http://192.168.1.3:3000/image/outer/%@",clothesType];
     }else{
         
     }
     [self clothesTypeSave];
-    //[self getImageUrl];
-
 }
 
 -(void)getImageUrl
@@ -183,7 +180,6 @@
     [userData setObject:self.url forKey:@"URL"];
     
     //画像一覧表示画面に移動
-//    ClothesImgTableViewController *civ = [[ClothesImgTableViewController alloc]init];
     ImageViewController *civ = [[ImageViewController alloc] init];
     [self presentViewController:civ animated:YES completion:nil];
 }
